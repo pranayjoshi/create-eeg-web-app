@@ -6,13 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/rickshaw.min.css" />
     <script type="text/javascript" src="js/danfo.js"></script>
+    <link rel="stylesheet" href="css/tailwind.css" />
     <title>EEG Playground</title>
   </head>
-  <body>
-    <div id="graph" style="width: 100%; height: 90vh; overflow: hidden; background-color: aquamarine;"></div>
+  <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2">
 
-    
-    <button id="bluetooth">BLE</button>
+
+    <h1 class="text-3xl font-bold text-blue-700 mb-4">EEG PlayGround</h1>
+
+    <!-- Search bar -->
+    <div class="w-full max-w-md mx-auto mb-4">
+      <input class="w-full px-3 py-2 text-gray-700 border rounded-full focus:outline-none focus:shadow-outline" type="search" placeholder="Search..." id="devicename" name="devicename">
+    </div>
+
+    <div class="flex gap-4">
+      <button id="clickme" class="bg-blue-600 hover:bg-blue-700 text-white rounded px-4 py-2">Connect Your Device</button>
+      <button id="clickme-random" class="bg-red-600 hover:bg-red-700 text-white rounded px-4 py-2">Connect Random Device</button>
+    </div>
+
+    <p class="mt-4 text-lg text-gray-700">Currently selected bluetooth device: <strong id="device-name" class="font-bold"></strong></p>
+    <div id="graph" style="width: 100%; height: 90vh; overflow: hidden; background-color: aquamarine;"></div>
+    <button id="bluetooth" class="bg-blue-600 hover:bg-blue-700 text-white rounded px-4 py-2">BLE</button>
     <script src="js/d3js.min.js"></script>
     <script src="js/rickshaw.min.js"></script>
     <script type="text/javascript" src="js/BCIDevice.build.js"></script>
