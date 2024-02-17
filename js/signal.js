@@ -6,6 +6,7 @@ export const Signal = class {
         this.channels = {}
         this.BUFFER_SIZE = buffer_size
         this.tensor = new TensorDSP("muse")
+        this.isAddingData = true;
 
         // If filtered preview is needed consider adding a filtered_channels object that holds a filtered copy of the raw data.
         // You could use the shift function on this data also to implement real-time filtered data visualization. 
@@ -13,12 +14,14 @@ export const Signal = class {
     }
 
     add_data(sample) {
+        if (!this.isAddingData) { 
+            return;
+        }
+
         let { electrode, data } = sample;
         if (!this.channels[electrode]) {
             this.channels[electrode] = [];
         }
-
-         // Add all samples to current array
         for (let i in data) {
             if (this.channels[electrode].length > this.BUFFER_SIZE - 1) {
                 this.channels[electrode].shift();
@@ -34,6 +37,9 @@ export const Signal = class {
         for (let i in this.graph_handlers) {
             this.graph_handlers[i].add_data(data, electrode)
         }
+    }
+    stopAddingData() {
+        this.isAddingData = false;
     }
 
     get_data() {
