@@ -4,24 +4,35 @@ export const Signal = class {
     constructor(graph_handlers, buffer_size=256) {
         this.graph_handlers = graph_handlers
         this.channels = {}
+        this.channels_post = {}
         this.BUFFER_SIZE = buffer_size
         this.tensor = new TensorDSP("muse")
-        this.isAddingData = true;
 
         // If filtered preview is needed consider adding a filtered_channels object that holds a filtered copy of the raw data.
         // You could use the shift function on this data also to implement real-time filtered data visualization. 
         // This will come with a computational cost.
     }
 
-    add_data(sample) {
-        if (!this.isAddingData) { 
-            return;
+    // Add data for post analysis
+    add_data_post(sample){
+        let { electrode, data } = sample;
+        if(!this.channels_post[electrode]) {
+            this.channels_post[electrode] = [];
         }
 
+        for (let i in data) {
+            this.channels[electrode].push(data[i]);
+        }
+        
+    }
+
+    add_data(sample) {
         let { electrode, data } = sample;
         if (!this.channels[electrode]) {
             this.channels[electrode] = [];
         }
+
+         // Add all samples to current array
         for (let i in data) {
             if (this.channels[electrode].length > this.BUFFER_SIZE - 1) {
                 this.channels[electrode].shift();
@@ -37,9 +48,6 @@ export const Signal = class {
         for (let i in this.graph_handlers) {
             this.graph_handlers[i].add_data(data, electrode)
         }
-    }
-    stopAddingData() {
-        this.isAddingData = false;
     }
 
     get_data() {
