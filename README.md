@@ -9,5 +9,5 @@
 
 
 # Features to add
-- Saving Plots to device as PNG
-- Generate multiple plots
+- Saving Plots to device as PNG.
+- Generate multiple plots.
