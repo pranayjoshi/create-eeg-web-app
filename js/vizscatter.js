@@ -59,8 +59,8 @@ export const VizScatter = class {
     label,
     data,
     backgroundColor = "aqua",
-    borderColor = "none",
-    radius = 8
+    borderColor = "transparent",
+    radius = 4
   ) {
     //chart.data.labels.push(label);
     this.remove_class_data(label)

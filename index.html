@@ -35,53 +35,68 @@
         Disconnect
       </button>
     </div>
+
     <div
-      class="flex gap-4 mt-4 hidden"
       id="show-up"
-      style="height: 70vh; width: 100vh; overflow: none"
+      style="height: 70vh; width: 100vh; overflow: none; display: none"
     >
-      <div
-        id="graph"
-        style="height: 90%; overflow: hidden; width: 100% "
-        class="bg-gray-200 block p-4 rounded-lg m-4"
-      ></div>
-      <div
-        id="scatter"
-        style="
-          width: 100%;
-          height: 90%;
-          overflow: hidden;
-          background-color: whitesmoke;
-          display: none;
-        "
-      >
-        <canvas id="chart1"></canvas>
-      </div>
-      <div class="gap-4 mt-4" style="height: 90%; overflow: hidden;">
-        <button
-          id="is_recording"
-          class="bg-red-600 hover:bg-red-700 text-white rounded px-4 py-2"
+      <div class="mt-4 flex w-full">
+        <div
+          id="graph"
+          style="
+            height: 70vh;
+            overflow: hidden;
+            display: block;
+            width: 80vh;
+          "
+          class="bg-gray-200 p-4 rounded-lg m-4"
+        ></div>
+        <div
+          id="scatter"
+          style="
+            width: 90%;
+            height: 90%;
+            overflow: hidden;
+            background-color: whitesmoke;
+            display: none;
+          "
         >
-          Record
-        </button>
-        <button
-          id="remove_data"
-          class="bg-red-600 hover:bg-red-700 text-white rounded px-4 py-2"
-        >
-          Remove Data
-        </button>
-        <button
-          id="scatter-btn"
-          class="bg-blue-600 hover:bg-blue-700 text-white rounded px-4 py-2"
-        >
-          Scatter
-        </button>
-        <button
-          id="line-btn"
-          class="bg-blue-600 hover:bg-blue-700 text-white rounded px-4 py-2"
-        >
-          Line
-        </button>
+          <canvas id="chart1"></canvas>
+        </div>
+        <div class="mt-4 space-2 border h-full p-2 rounded-lg bg-white border-gray-600" style="height: 100%; width: 20%; overflow: hidden">
+          <p class="text-gray-700 text-2xl mb-6">Control Panel</p>
+          <button
+            id="is_recording"
+            class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-4 py-2 mb-4"
+          >
+            Record
+          </button>
+          <button
+            id="remove_data"
+            class="bg-red-600 hover:bg-red-700 text-white rounded-full px-4 py-2 mb-4"
+          >
+            Remove Data
+          </button>
+          <hr>
+          <div class="mt-4">
+          <p class="text-gray-700 text-xl mb-4">Set Timer</p>
+            <input
+            id="timer_duration"
+            type="number"
+            min="0"
+            placeholder="Duration in seconds"
+            class="mb-4 text-sm h-10 w-full px-4 border rounded-lg"
+          >
+          <button
+            id="start_timer"
+            class="bg-green-600 hover:bg-green-700 text-white rounded-full px-4 py-2 mb-4"
+          >
+            Start Recording
+          </button>
+          <p id="timer_display" class="text-gray-700 text-xl ml-4">0:00</p>
+          </div>
+          
+        </div>
       </div>
     </div>
     <div>

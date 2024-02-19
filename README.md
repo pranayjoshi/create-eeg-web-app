@@ -5,4 +5,9 @@
 
 
 # Supported Devices
-- Muse 2 
+- Muse 2
+
+
+# Features to add
+- Saving Plots to device as PNG
+- Generate multiple plots

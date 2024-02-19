@@ -35,6 +35,42 @@ export const Study = class {
     this.viz.remove_all_data()
   }
 
+  timer() {
+    let timerDurationInput = document.getElementById('timer_duration');
+    let startTimerButton = document.getElementById('start_timer');
+    let timerDisplay = document.getElementById('timer_display');
+    let timerId = null;
+  
+    startTimerButton.onclick = () => {
+      this.toggle_record_state();
+      let duration = parseInt(timerDurationInput.value);
+      if (isNaN(duration) || duration <= 0) {
+        alert('Please enter a valid duration.');
+        return;
+      }
+  
+      // Clear any existing timer
+      if (timerId !== null) {
+        clearInterval(timerId);
+      }
+  
+      // Start a new timer
+      timerId = setInterval(() => {
+        if (duration <= 0) {
+          timerDisplay.textContent = '0:00';
+          this.toggle_record_state();
+          clearInterval(timerId);
+          timerId = null;
+        } else {
+          let minutes = Math.floor(duration / 60);
+          let seconds = duration % 60;
+          timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+          duration--;
+        }
+      }, 1000);
+    };
+  }
+
   //toggle record state
   toggle_record_state() {
     this.isRecording = !this.isRecording;

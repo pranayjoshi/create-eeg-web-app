@@ -3,7 +3,7 @@ import { Data } from "./data.js";
 import { MuseSeries } from "./series_muse.js";
 
 export const MuseGraph = class {
-    constructor(div_id, width, height, max_data, time_interval=1) {
+    constructor(div_id, height, max_data, time_interval=1) {
         this.width = document.querySelector(`#${div_id}`).parentElement.clientWidth
         //console.log("width", this.width)
         this.height = height

@@ -6,7 +6,7 @@ import { Study } from "./study.js"
 const NeuroApp = class {
     constructor() {
         console.log("NeuroApp")
-        this.muse_visualizer = new MuseGraph("graph", window.innerWidth * 0.8, window.innerHeight * 0.8, 256 * 2, 1)
+        this.muse_visualizer = new MuseGraph("graph", window.innerHeight * 0.8, 256 * 2, 1)
         this.graph_handlers = {"muse": this.muse_visualizer}
         //this.signal_handler = new Signal(this.graph_handlers, 512) // use this Object for real-time applications
         this.signal_handler = new Study(this.graph_handlers, 512)
@@ -16,6 +16,7 @@ const NeuroApp = class {
         disconnectButton.onclick = function(e) {
             bleInstance.disconnect();
         };
+        this.signal_handler.timer();
     }
 }
 
