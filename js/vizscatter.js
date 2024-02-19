@@ -19,6 +19,10 @@ export const VizScatter = class {
       },
     });
 
+    document.getElementById('save-chart').addEventListener('click', () => {
+      this.save_chart();
+    });
+
 
     // Add Data
     /*
@@ -34,6 +38,19 @@ export const VizScatter = class {
       this.add_data("class 1", data, "pink");
     }.bind(this);
     */
+  }
+
+  save_chart() {
+    this.chart.canvas.toBlob((blob) => {
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.style = 'display: none';
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = 'chart.png';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, 'image/png', 1);
   }
 
   get_html_element(id) {

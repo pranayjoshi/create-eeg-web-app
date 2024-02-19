@@ -78,6 +78,9 @@ export const Study = class {
       .isRecording
       ? "Stop Recording"
       : "Record";
+    this.get_html_element("graph-div").style.display = this.isRecording
+      ? "none"
+      : "block";
 
     // Hard coded for testing
     console.log("toggle states", this.isRecording);
