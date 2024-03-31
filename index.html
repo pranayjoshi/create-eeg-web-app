@@ -15,18 +15,28 @@
   >
     <h1 class="text-6xl font-bold text-blue-700 mb-4">EEG PlayGround</h1>
     <div class="flex gap-4" type="text">
+      <div class="flex gap-4 bg-white p-2 rounded-full border" type="text">
       <input
         class="rounded-full border px-4 py-2"
         type="text"
-        id="class"
-        name="class"
-        value="class1"
+        id="devicename"
+        name="devicename"
+        value="Muse-27A8"
       />
+      <button
+        id="bluetooth-con"
+        class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2"
+      >
+        Connect
+      </button>
+    </div>
+      <div class="flex gap-4 bg-white p-2 rounded-full border" type="text">
+      
       <button
         id="bluetooth"
         class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2"
       >
-        BLE
+        Choose Device
       </button>
       <button
         id="bluetooth-dis"
@@ -35,7 +45,7 @@
         Disconnect
       </button>
     </div>
-
+    </div>
     <div
       id="show-up"
       style="height: 70vh; width: 100vh; overflow: none; display: none"
@@ -65,6 +75,14 @@
         </div>
         <div class="mt-4 space-2 border h-full p-2 rounded-lg bg-white border-gray-600" style="height: 100%; width: 20%; overflow: hidden">
           <p class="text-gray-700 text-2xl mb-6">Control Panel</p>
+          <p class="text-gray-700 text-sm mb-6">label</p>
+          <input
+        class="rounded-full border px-4 py-2"
+        type="text"
+        id="class"
+        name="class"
+        value="class1"
+      />
           <button
             id="is_recording"
             class="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-4 py-2 mb-4"
@@ -130,5 +148,6 @@
     <script src="js/rickshaw.min.js"></script>
     <script type="text/javascript" src="js/BCIDevice.build.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="renderer.js"></script>
   </body>
 </html>

@@ -1,24 +1,22 @@
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+const noble = require('@abandonware/noble');
+const path = require('path');
+// rest of your code...
+const { dialog, app, BrowserWindow } = require('electron');
 
-function createWindow () {
-  const mainWindow = new BrowserWindow({
+let win;
+
+function createWindow() {
+  win = new BrowserWindow({
     width: 800,
-    height: 600
-  })
+    height: 600,
+    webPreferences: {
+    preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
+    },
+  });
 
-  mainWindow.loadFile('index.html')
-
+  win.loadFile('index.html');
+    // win.webContents.openDevTools();
 }
 
-app.whenReady().then(() => {
-  createWindow()
-  
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
+app.whenReady().then(createWindow);
