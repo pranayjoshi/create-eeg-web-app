@@ -12,6 +12,12 @@ export const BLE = class {
 
     this.isConnected = false;
   }
+  async connect() {
+    await this.device.connect();
+
+    // EEG DATA
+    this.device.eegReadings.subscribe(this.callback);
+  }
 
   get_html_element(id) {
     return document.getElementById(id);

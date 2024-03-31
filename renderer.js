@@ -1,4 +1,4 @@
-const noble = require('@abandonware/noble');
+
 const BLE = require("./ble.js");
 const Signal = require("./signal.js");
 const MuseGraph = require("./muse-graph.js");

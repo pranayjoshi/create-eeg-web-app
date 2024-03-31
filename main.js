@@ -1,6 +1,7 @@
-const noble = require('@abandonware/noble');
+
 const path = require('path');
 // rest of your code...
+const MUSE_DEVICE_NAME = "Muse-27A8";
 const { dialog, app, BrowserWindow } = require('electron');
 
 let win;
