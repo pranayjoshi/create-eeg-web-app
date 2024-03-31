@@ -1,25 +1,14 @@
-//import { MuseElectronClient } from "./muse-client.js";
+import { MuseElectronClient } from "./muse-client.js";
 export const BLE = class {
   constructor(callback, connect_button_id = "bluetooth") {
-    this.device = new Blue.BCIDevice(callback);
-    // this.device_connect_id = "bluetooth-con";
-    // document.getElementById(this.device_connect_id).onclick = async function (e) {
-    //   const devicename = document.getElementById('devicename').value
-    //     console.log(devicename)
-    //     const device = await navigator.bluetooth.requestDevice({
-    //       filters: [{ name: devicename }]
-    //     })
-    //   const server = await device.connect();
-    //   this.toggle_show_up()
-      
-    // }.bind(this);
-    console.log("BLE")
-    // Connect Events
-    document.getElementById(connect_button_id).onclick = async function (e) {
-      await this.device.connect()
-      this.toggle_show_up()
-      
-    }.bind(this);
+      this.device = new MuseElectronClient();
+      this.callback = callback;
+      console.log("BLE constructor");
+  
+      // Connect Events
+      document.getElementById(connect_button_id).onclick = function (e) {
+        this.connect();
+      }.bind(this);
 
     this.isConnected = false;
   }
