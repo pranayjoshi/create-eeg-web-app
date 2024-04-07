@@ -27,4 +27,4 @@
             borderColor: ["black"],
             radius: 8,
           },
-        ],
+        ]

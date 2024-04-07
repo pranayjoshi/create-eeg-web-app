@@ -3,19 +3,20 @@ export const BLE = class {
   constructor(callback, connect_button_id = "bluetooth") {
       this.device = new MuseElectronClient();
       this.callback = callback;
-      console.log("BLE constructor");
+      this.isConnected = false;
   
       // Connect Events
       document.getElementById(connect_button_id).onclick = function (e) {
         this.connect();
+        this.toggle_show_up()
+    
+        console.log("BLE connected successfully!");
+        
       }.bind(this);
-
-    this.isConnected = false;
-    console.log("BLE connected successfully!");
+      
   }
   async connect() {
     await this.device.connect();
-
     // EEG DATA
     this.device.eegReadings.subscribe(this.callback);
   }
@@ -42,8 +43,8 @@ export const BLE = class {
   }
 
   disconnect() {
-    this.device.disconnect();
-    console.log("Disconnected");
+    // this.device.disconnect();
+    // console.log("Disconnected");
     toggle_show_up()
   }
 };

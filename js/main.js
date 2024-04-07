@@ -1,6 +1,7 @@
-const { BLE } = require("./ble.js");
-const { MuseGraph } = require("./muse-graph.js");
-const { Study } = require("./study.js");
+import { BLE } from "./ble.js"
+import { Signal } from "./signal.js"
+import { MuseGraph } from "./muse-graph.js"
+import { Study } from "./study.js"
 
 // async function connectDevice () {
 //     const devicename = document.getElementById('devicename').value

@@ -109,6 +109,7 @@ export const Study = class {
 
   // Add data for post analysis
   add_data(sample) {
+    // console.log("wadad")
     if (!this.isRecording) return; // if not recording do not store data
 
     let { electrode, data } = sample;
