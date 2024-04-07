@@ -11,6 +11,7 @@ export const BLE = class {
       }.bind(this);
 
     this.isConnected = false;
+    console.log("BLE connected successfully!");
   }
   async connect() {
     await this.device.connect();

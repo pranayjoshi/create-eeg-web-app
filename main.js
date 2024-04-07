@@ -1,9 +1,12 @@
 
+const { BLE } = require("./js/ble.js");
+const { MuseGraph } = require("./js/muse-graph.js");
+const { Study } = require("./js/study.js");
+const { dialog, app, BrowserWindow } = require('electron');
 const path = require('path');
+const NeuroApp = require('./js/main');
 // rest of your code...
 const MUSE_DEVICE_NAME = "Muse-27A8";
-const { dialog, app, BrowserWindow } = require('electron');
-
 let win;
 
 function createWindow() {
@@ -15,7 +18,7 @@ function createWindow() {
       nodeIntegration: true
     },
   });
-  mainWindow.webContents.on(
+  win.webContents.on(
     "select-bluetooth-device",
     (event, deviceList, callback) => {
       event.preventDefault();
@@ -44,7 +47,27 @@ function createWindow() {
   );
 
   win.loadFile('index.html');
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
+    const NeuroApp = class {
+      constructor() {
+          console.log("NeuroApp")
+          this.muse_visualizer = new MuseGraph("graph", window.innerHeight * 0.8, 256 * 2, 1)
+          this.graph_handlers = {"muse": this.muse_visualizer}
+          //this.signal_handler = new Signal(this.graph_handlers, 512) // use this Object for real-time applications
+          this.signal_handler = new Study(this.graph_handlers, 512)
+          // let connectBtn = document.getElementById('bluetooth-con');
+          // connectBtn.onclick = function(e) {
+          //     connectDevice();
+          // };
+          this.ble = new BLE(this.signal_handler.add_data.bind(this.signal_handler))
+          let bleInstance = this.ble;
+          let disconnectButton = document.getElementById('bluetooth-dis');
+          disconnectButton.onclick = function(e) {
+              bleInstance.disconnect();
+          };
+          this.signal_handler.timer();
+      }
+  }
 }
 
 app.whenReady().then(createWindow);
