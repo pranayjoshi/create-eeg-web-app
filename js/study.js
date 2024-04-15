@@ -83,7 +83,7 @@ export const Study = class {
       : "block";
 
     // Hard coded for testing
-    console.log("toggle states", this.isRecording);
+    // console.log("toggle states", this.isRecording);
 
     this.get_html_element("scatter").style.display = this.isRecording
       ? "none"
@@ -94,7 +94,7 @@ export const Study = class {
 
     if (!this.isRecording) {
       let label = this.get_class().replace(/\s/g, "_");
-      console.log("label", label)
+      // console.log("label", label)
       this.update_scatter_chart(2, 3, label);
     }
   }
@@ -111,9 +111,10 @@ export const Study = class {
   add_data(sample) {
     // console.log("wadad")
     if (!this.isRecording) return; // if not recording do not store data
+    let { electrode, samples } = sample;
 
-    let { electrode, data } = sample;
     let class_label = this.get_class().replace(/\s/g, "_");
+    // console.log("class_label", class_label)
 
     if (!this.data[class_label]) {
       this.data[class_label] = {};
@@ -123,12 +124,13 @@ export const Study = class {
       this.data[class_label][electrode] = [];
     }
 
-    for (let i in data) {
-      this.data[class_label][electrode].push(data[i]);
+    for (let i in samples) {
+      this.data[class_label][electrode].push(samples[i]);
     }
 
-    console.log(this.data);
-    this.update_graph_handlers(data, electrode);
+
+    
+    this.update_graph_handlers(samples, electrode);
   }
 
   // Update all visualizers with new data

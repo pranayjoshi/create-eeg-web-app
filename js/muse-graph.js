@@ -71,7 +71,7 @@ export const MuseGraph = class {
 
     // Update graph visualizer if all channels hold new data
     add_data(data, electrode) {
-        // console.log("Received data for electrode", electrode, data);
+        console.log("Received data for electrode", electrode, data);
         this.recent_data_temp[electrode] = data;
         this.isChannelDataReady[electrode] = true;
         this.update_graph();
