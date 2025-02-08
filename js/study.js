@@ -1,5 +1,6 @@
 import { TensorDSP } from "./tensor-dsp.js";
 import { VizScatter } from "./vizscatter.js";
+// import { export_to_csv } from "./muse-graph.js";
 
 export const Study = class {
   constructor(
@@ -96,6 +97,7 @@ export const Study = class {
       let label = this.get_class().replace(/\s/g, "_");
       // console.log("label", label)
       this.update_scatter_chart(2, 3, label);
+      // export_to_csv();
     }
   }
 
@@ -165,4 +167,6 @@ export const Study = class {
   get_data() {
     return this.channels;
   }
+
+  
 };
